@@ -1,19 +1,19 @@
-const { Kafka } = require("kafkajs");
+const { Kafka } = require('kafkajs');
 
 createTopic();
 
 async function createTopic() {
     try {
-        // Admin Stuff..
+        // Admin stuffs
         const kafka = new Kafka({
-            clientId: "kafka_ornek_1",
+            clientId: "client_project_1",
             brokers: ["192.168.1.124:9092"]
-        });
+        })
 
         const admin = kafka.admin();
-        console.log("Kafka Broker'a bağlanılıyor...");
+        console.log("Kafka broker'a bağlanılıyor...");
         await admin.connect();
-        console.log("Kafka Broker'a bağlantı başarılı, Topic üretilecek..");
+        console.log("Kafka broker'a bağlandı. Birazdan Topic üretilecek...");
         await admin.createTopics({
             topics: [
                 {
@@ -26,10 +26,10 @@ async function createTopic() {
                 }
             ]
         });
-        console.log("Topic Başarılı bir şekilde oluşturulmuştur...");
-        //await admin.disconnect();
+        console.log("Topic başarılı bir şekilde oluşturulmuştur :)");
+        await admin.disconnect();
     } catch (error) {
-        console.log("Bir Hata Oluştu", error);
+        console.log("Bir hata oluştu: ", error);
     } finally {
         process.exit(0);
     }
