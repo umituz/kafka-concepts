@@ -1,4 +1,5 @@
-const {Kafka} = require('kafkajs');
+const { Kafka } = require('kafkajs');
+const topicName = process.argv[2] || "Logs"
 
 createConsumer();
 
@@ -19,7 +20,7 @@ async function createConsumer() {
 
         // Consumer subscribe
         await consumer.subscribe({
-            topic: "Logs",
+            topic: topicName,
             fromBeginning: true
         });
 

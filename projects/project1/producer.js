@@ -1,4 +1,6 @@
 const { Kafka } = require('kafkajs');
+const topicName = process.argv[2] || "Logs"
+const partition = process.argv[3] || 0
 
 createProducer();
 
@@ -16,11 +18,11 @@ async function createProducer() {
         console.log("Producer'a bağlantı başarılı bir şekilde gerçekleşti...");
 
         const messageResult = await producer.send({
-            topic: "Logs",
+            topic: topicName,
             messages: [
                 {
                     value: "Bu bir test Log mesajıdır",
-                    partition: 0
+                    partition: partition
                 }
             ]
         });
